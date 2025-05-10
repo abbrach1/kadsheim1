@@ -1,0 +1,66 @@
+@media print {
+  /* Hide everything except .print-report */
+  body > *:not(.print-report):not(.print-report *),
+  #root > *:not(.print-report):not(.print-report *),
+  header, footer, nav, .MuiPaper-root, .MuiTabs-root, .MuiTab-root, .MuiAppBar-root, .MuiToolbar-root {
+    display: none !important;
+  }
+  .print-report, .print-report-week {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+  }
+
+  .print-hide, .print-hide * {
+    display: none !important;
+  }
+  button, input, textarea, select, .MuiButton-root, .MuiTextField-root, .MuiFormControl-root {
+    display: none !important;
+  }
+  .MuiPaper-root {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  .print-report {
+    display: block !important;
+    margin: 0 auto;
+    max-width: 900px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #222;
+  }
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 1rem;
+  }
+  .print-table th, .print-table td {
+    border: 1px solid #444;
+    padding: 6px 12px;
+    text-align: left;
+  }
+  .print-table th {
+    background: #f5f5f5;
+    font-weight: bold;
+  }
+  .print-table tr:nth-child(even) {
+    background: #f0f0f0;
+  }
+  /* Remove default print headers/footers (where supported) */
+  @page {
+    margin: 20mm;
+    size: auto;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+.print-report {
+  /* visible by default, hidden only by logic if needed */
+}
+
