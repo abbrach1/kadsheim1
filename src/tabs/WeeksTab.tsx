@@ -14,7 +14,17 @@ const participationOptions = [
 const WeeksTab: React.FC = () => {
   // Print only the selected week's report
   const handlePrintWeek = (weekId: string) => {
-    // ...existing print logic...
+    // Hide all .print-report-week except the selected one
+    const allReports = document.querySelectorAll('.print-report-week');
+    allReports.forEach(el => (el as HTMLElement).style.display = 'none');
+    const target = document.querySelector('.print-report-week-' + weekId) as HTMLElement | null;
+    if (target) target.style.display = 'block';
+    // Hide everything else except .print-report
+    window.print();
+    // Restore all
+    setTimeout(() => {
+      allReports.forEach(el => (el as HTMLElement).style.display = 'none');
+    }, 500);
   };
 
   // Export CSV for a week
@@ -40,19 +50,6 @@ const WeeksTab: React.FC = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };
-
-    // Hide all .print-report-week except the selected one
-    const allReports = document.querySelectorAll('.print-report-week');
-    allReports.forEach(el => (el as HTMLElement).style.display = 'none');
-    const target = document.querySelector('.print-report-week-' + weekId) as HTMLElement | null;
-    if (target) target.style.display = 'block';
-    // Hide everything else except .print-report
-    window.print();
-    // Restore all
-    setTimeout(() => {
-      allReports.forEach(el => (el as HTMLElement).style.display = 'none');
-    }, 500);
   };
 
   // Update hours learned for a student in the edit dialog
